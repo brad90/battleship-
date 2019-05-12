@@ -1,5 +1,6 @@
 const assert = require('assert')
 const BattleShip = require('../models/app.js')
+const BattleShipOcean = require('../models/battleshipOceanGrid.js')
 
 describe('BattleShip', function(){
   let destroyer1
@@ -50,5 +51,8 @@ describe('BattleShip', function(){
     const expected = 0;
     assert.strictEqual(actual, expected)
   });
+
+
+
 
 });

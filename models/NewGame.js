@@ -19,54 +19,75 @@ const aircraftCarrier = new AircraftCarrier();
 const theUSFleet = [battleShip1, battleShip2, destroyer1, destroyer2, submarine, aircraftCarrier]
 const assignedCoordinates =[];
 
-
-
-NewGame.prototype.randomGridNumberVertical = function () {
-  let gridLetters = ['a','b','c','d','e','f','g','h','i','j']
+NewGame.prototype.randomGridNumber = function () {
   const randomValue = Math.floor(Math.random() * 10 + 1)
-  const randomLetter = gridLetters[randomValue -1 ]
-  const coordinate =  randomLetter + randomValue;
-  return coordinate;
+  return randomValue;
 };
 
-NewGame.prototype.randomGridNumberHorizontal = function () {
+NewGame.prototype.randomGridLetter = function () {
   let gridLetters = ['a','b','c','d','e','f','g','h','i','j']
-  const randomValue = Math.floor(Math.random() * 10 + 1)
+  const randomValue = this.randomGridNumber();
   const randomLetter = gridLetters[randomValue -1 ]
-  const coordinate = randomValue + randomLetter;
-  return coordinate;
+  return randomLetter;
 };
 
+NewGame.prototype.assignNewCoordinatesToShip = function () {
 
-NewGame.prototype.assignShipsToCoordinates = function () {
   for(let i=0; i < theUSFleet.length; i++){
 
-    let value = false
+    let value = 0
+    let coordinateLetter = this.randomGridLetter()
+    console.log(coordinateLetter);
+    let randomValue = this.randomGridNumber()
+    console.log(randomValue);
+    const newNumbers = [];
 
-    while (value === false){
+    console.log(typeof newCoordinate);
 
-      let randomCoordinate = this.randomGridNumberVertical()
-      let coordinateNumber = parseInt(randomCoordinate.slice(1))
-      console.log(coordinateNumber);
-      
-      if ( coordinateNumber + theUSFleet[i].hitPoints < 10){
-      theUSFleet[i].coordinates.push(randomCoordinate)
-      value = true
-      }
+
+    while(value < theUSFleet[i].hitPoints ){
+      const newCoordinate = coordinateLetter + randomValue
+      newNumbers.push(randomValue)
+      theUSFleet[i].coordinates.push(newCoordinate)
+      randomValue += 1
+      value += 1
     }
+    console.log(newNumbers)
   }
-}
+};
+
+
+// NewGame.prototype.assignShipsToStartCoordinates = function () {
+//
+//   for(let i=0; i < theUSFleet.length; i++){
+//
+//     let coordinateLetter = this.randomGridLetter()
+//     let coordinateNumber = this.randomGridNumber()
+//     let shipCoordinateStart = coordinateLetter + coordinateNumber
+//
+//     if ( coordinateNumber + theUSFleet[i].hitPoints < 10 ){
+//       theUSFleet[i].coordinates.push(shipCoordinateStart)
+//     }
+//   }
+// };
+
+
+
 
 const newGame1 =  new NewGame
 
 // newBattleOcean.randomHorizontalGrid()
 // newBattleOcean.randomVerticalGrid()
-newGame1.randomGridNumberVertical();
-newGame1.randomGridNumberHorizontal();
-newGame1.assignShipsToCoordinates()
+newGame1.randomGridNumber();
+newGame1.randomGridLetter();
+// newGame1.assignShipsToStartCoordinates();
+// newGame1.createTheNextFewNumbers();
+newGame1.assignNewCoordinatesToShip();
 
 console.log(battleShip1);
+console.log(battleShip2);
 console.log(destroyer1);
+console.log(destroyer2);
 console.log(submarine);
 console.log(aircraftCarrier);
 console.log(assignedCoordinates);

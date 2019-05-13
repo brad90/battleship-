@@ -35,24 +35,32 @@ NewGame.prototype.assignNewCoordinatesToShip = function () {
 
   for(let i=0; i < theUSFleet.length; i++){
 
-    let value = 0
     let coordinateLetter = this.randomGridLetter()
-    console.log(coordinateLetter);
-    let randomValue = this.randomGridNumber()
-    console.log(randomValue);
-    const newNumbers = [];
+    let coordinateNumber = this.randomGridNumber()
 
-    console.log(typeof newCoordinate);
+    let trueOrFalse = false
+
+    while(trueOrFalse === false){
+
+      if (coordinateNumber + theUSFleet[i].hitPoints < 10 ){
+
+        let value = 0
+
+        const lettersUsed = []
+        lettersUsed.push(coordinateLetter)
+        console.log(lettersUsed);
 
 
-    while(value < theUSFleet[i].hitPoints ){
-      const newCoordinate = coordinateLetter + randomValue
-      newNumbers.push(randomValue)
-      theUSFleet[i].coordinates.push(newCoordinate)
-      randomValue += 1
-      value += 1
+        while(value < theUSFleet[i].hitPoints ){
+          const newCoordinate = coordinateLetter + coordinateNumber
+
+          theUSFleet[i].coordinates.push(newCoordinate)
+          coordinateNumber += 1
+          value += 1
+        }
+      }
+      trueOrFalse = true;
     }
-    console.log(newNumbers)
   }
 };
 

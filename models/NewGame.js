@@ -87,7 +87,7 @@ NewGame.prototype.assignNewCoordinatesToShiphorizontal = function () {
           let value = 0
 
           while(value < theUSFleet[i].hitPoints ){
-            const newCoordinate = coordinateNumber + letters[indexOfLetter]
+            const newCoordinate =  letters[indexOfLetter] + coordinateNumber 
 
             theUSFleet[i].coordinates.push(newCoordinate)
             indexOfLetter += 1

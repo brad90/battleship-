@@ -41,16 +41,19 @@ NewGame.prototype.randomGridNumberHorizontal = function () {
 NewGame.prototype.assignShipsToCoordinates = function () {
   for(let i=0; i < theUSFleet.length; i++){
 
-    let randomCoordinate = this.randomGridNumberVertical()
-    let coordinateNumber = parseInt(randomCoordinate.slice(1))
-    console.log(coordinateNumber);
+    let value = false
 
-    console.log(i.hitPoints);
+    while (value === false){
 
-    if ( coordinateNumber + theUSFleet[i].hitPoints < 10 ){
-      assignedCoordinates.push(randomCoordinate)
+      let randomCoordinate = this.randomGridNumberVertical()
+      let coordinateNumber = parseInt(randomCoordinate.slice(1))
+      console.log(coordinateNumber);
+      
+      if ( coordinateNumber + theUSFleet[i].hitPoints < 10){
+      theUSFleet[i].coordinates.push(randomCoordinate)
+      value = true
+      }
     }
-
   }
 }
 

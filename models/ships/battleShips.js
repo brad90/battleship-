@@ -20,12 +20,7 @@ BattleShip.prototype.succesfulHitToShip = function () {
 
 
 
-battleShip.succesfulHitToShip();
-console.log(battleShip);
-battleShip.succesfulHitToShip();
-console.log(battleShip);
-battleShip.succesfulHitToShip();
-console.log(battleShip);
+
 
 
 

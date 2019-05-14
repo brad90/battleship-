@@ -7,13 +7,13 @@ describe('BattleShip', function(){
 
 
   beforeEach(function(){
-    battleShip = new BattleShip();
+    battleShip = new BattleShip("Battleship",3);
   })
 
 
   it('should return the type of the ship', function(){
     const actual = battleShip.type;
-    const expected = "BattleShip";
+    const expected = "Battleship";
     assert.strictEqual(actual, expected)
   });
 

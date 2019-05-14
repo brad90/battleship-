@@ -1,6 +1,6 @@
-const  BattleShip = function(){
-  this.type = "BattleShip"
-  this.hitPoints = 3,
+const  BattleShip = function(type, hitpoints){
+  this.type = type
+  this.hitPoints = hitpoints,
   this.coordinates = []
 }
 

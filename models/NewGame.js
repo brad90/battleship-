@@ -1,20 +1,15 @@
 const Battleship = require('./ships/battleShips.js')
-const Destroyer = require('./ships/destroyer.js')
-const Submarine = require('./ships/submarine.js')
-const AircraftCarrier= require('./ships/aircraftCarrier.js')
-
-
 
 
 const NewGame = function(){};
 
 
-const battleShip1 = new Battleship();
-const battleShip2 = new Battleship();
-const destroyer1 = new Destroyer();
-const destroyer2 = new Destroyer();
-const submarine = new Submarine();
-const aircraftCarrier = new AircraftCarrier();
+const battleShip1 = new Battleship('Battleship', 3);
+const battleShip2 = new Battleship('Battleship', 3);
+const destroyer1 = new Battleship('Destroyer', 3);
+const destroyer2 = new Battleship('Destroyer', 3);
+const submarine = new Battleship('Submarine', 2);
+const aircraftCarrier = new Battleship('AircraftCarrier', 4);
 
 const theUSFleet = [battleShip1, battleShip2, destroyer1, destroyer2, submarine, aircraftCarrier]
 let assignedCoordinates =[];
@@ -84,6 +79,9 @@ NewGame.prototype.assignNewCoordinatesToShipVertical = function(){
 
   let letters = ['a','b','c','d','e','f','g','h','i','j']
 
+  theUSFleet.forEach(function(element){
+    element.coordinates =[]
+  })
 
   for(let i=0; i < theUSFleet.length; i++){
     let alreadyAssignedLetters = []
@@ -153,6 +151,12 @@ NewGame.prototype.assignNewCoordinatesToShipVertical = function(){
 
 NewGame.prototype.checkifthereAreDoubles = function () {
 
+  console.log("help",assignedCoordinates);
+
+  this.assignNewCoordinatesToShipVertical()
+
+  console.log("after runnig",assignedCoordinates);
+
   let value = false
 
   while(value === false){
@@ -162,12 +166,24 @@ NewGame.prototype.checkifthereAreDoubles = function () {
       if(assignedCoordinates.includes(assignedCoordinates[i + 1])===false){
         value = true
       }
-
     }
     assignedCoordinates = []
     this.assignNewCoordinatesToShipVertical()
   }
-  console.log(assignedCoordinates);
+  console.log(theUSFleet);
+}
+
+NewGame.prototype.playerGuessInput = function(guess) {
+
+  for (let i =0;i<theUSFleet.length;i++) {
+
+    const doesShipContainGuess = theUSFleet[i].coordinates.includes(guess)
+    if(doesShipContainGuess === true){
+      theUSFleet[i].succesfulHitToShip()
+
+    }
+
+  };
 }
 
 
@@ -244,6 +260,9 @@ const newGame1 =  new NewGame
 // newGame1.assignShips();
 // newGame1.assignNewCoordinatesToShipVertical();
 newGame1.checkifthereAreDoubles();
+
+newGame1.playerGuessInput('a4')
+
 
 
 

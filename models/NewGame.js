@@ -17,7 +17,7 @@ const submarine = new Submarine();
 const aircraftCarrier = new AircraftCarrier();
 
 const theUSFleet = [battleShip1, battleShip2, destroyer1, destroyer2, submarine, aircraftCarrier]
-const assignedCoordinates =[];
+let assignedCoordinates =[];
 
 NewGame.prototype.randomGridNumber = function () {
   const randomValue = Math.floor(Math.random() * 10 + 1)
@@ -108,15 +108,15 @@ NewGame.prototype.assignNewCoordinatesToShipVertical = function(){
 
           while(value < theUSFleet[i].hitPoints ){
             newCoordinateVertical = coordinateLetterVertical + coordinateNumberVertical
-            console.log(newCoordinateVertical);
+
             theUSFleet[i].coordinates.push(newCoordinateVertical)
             assignedCoordinates.push(newCoordinateVertical)
             coordinateNumberVertical += 1
             value += 1
-            console.log(value);
+
           }
           trueOrFalse = true;
-          console.log(alreadyAssignedLetters);
+
         }
       }
     }else{
@@ -147,6 +147,31 @@ NewGame.prototype.assignNewCoordinatesToShipVertical = function(){
     }
   }
 };
+
+
+
+
+NewGame.prototype.checkifthereAreDoubles = function () {
+
+  let value = false
+
+  while(value === false){
+
+
+    for(i=0; i < assignedCoordinates.length; i++){
+      if(assignedCoordinates.includes(assignedCoordinates[i + 1])===false){
+        value = true
+      }
+
+    }
+    assignedCoordinates = []
+    this.assignNewCoordinatesToShipVertical()
+  }
+  console.log(assignedCoordinates);
+}
+
+
+
 
 
 
@@ -210,16 +235,17 @@ const newGame1 =  new NewGame
 
 // newBattleOcean.randomHorizontalGrid()
 // newBattleOcean.randomVerticalGrid()
-newGame1.randomGridNumber();
-newGame1.randomGridLetter();
+// newGame1.randomGridNumber();
+// newGame1.randomGridLetter();
 // newGame1.assignShipsToStartCoordinates();
 // newGame1.createTheNextFewNumbers();
 // newGame1.assignNewCoordinatesToShipVertical();
 // newGame1.assignNewCoordinatesToShiphorizontal();
 // newGame1.assignShips();
-newGame1.assignNewCoordinatesToShipVertical();
+// newGame1.assignNewCoordinatesToShipVertical();
+newGame1.checkifthereAreDoubles();
 
-console.log(theUSFleet);
+
 
 
 module.exports = NewGame;

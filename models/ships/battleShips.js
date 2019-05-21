@@ -12,7 +12,7 @@ const battleShip = new BattleShip
 BattleShip.prototype.succesfulHitToShip = function () {
 
   if (this.hitPoints !== 0 ){
-      return this.hitPoints -= 1}
+     return this.hitPoints -= 1}
   console.log("you sunk my battleship")
 };
 

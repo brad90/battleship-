@@ -151,11 +151,7 @@ NewGame.prototype.assignNewCoordinatesToShipVertical = function(){
 
 NewGame.prototype.checkifthereAreDoubles = function () {
 
-  console.log("help",assignedCoordinates);
-
   this.assignNewCoordinatesToShipVertical()
-
-  console.log("after runnig",assignedCoordinates);
 
   let value = false
 
@@ -169,9 +165,10 @@ NewGame.prototype.checkifthereAreDoubles = function () {
     }
     assignedCoordinates = []
     this.assignNewCoordinatesToShipVertical()
-  }
-  console.log(theUSFleet);
+  };
 }
+
+
 
 NewGame.prototype.playerGuessInput = function(guess) {
 
@@ -179,11 +176,13 @@ NewGame.prototype.playerGuessInput = function(guess) {
 
     const doesShipContainGuess = theUSFleet[i].coordinates.includes(guess)
     if(doesShipContainGuess === true){
+
       theUSFleet[i].succesfulHitToShip()
 
+      console.log(theUSFleet);
     }
-
-  };
+    console.log('miss');
+  }
 }
 
 
@@ -261,7 +260,7 @@ const newGame1 =  new NewGame
 // newGame1.assignNewCoordinatesToShipVertical();
 newGame1.checkifthereAreDoubles();
 
-newGame1.playerGuessInput('a4')
+newGame1.playerGuessInput('f4')
 
 
 
